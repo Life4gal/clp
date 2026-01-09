@@ -1,0 +1,18 @@
+# ==============================
+# IDE
+.idea/*
+.idea
+.vs/*
+.vs
+
+# ==============================
+# scripts
+
+# CPM.cmake & CPM.cmake.tmp
+CPM.cmake*
+
+# ==============================
+# OUTPUT
+out/*
+out
+*.pdb
