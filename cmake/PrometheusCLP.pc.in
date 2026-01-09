@@ -1,0 +1,11 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
+
+Name: @PROJECT_NAME@
+Description: Prometheus Command Line Parser Library
+Version: @PROMETHEUS_CLP_VERSION@
+URL: https://github.com/Life4gal/clp
+Cflags: -I${includedir}
+Libs: -L${libdir} -l@PROJECT_NAME@
