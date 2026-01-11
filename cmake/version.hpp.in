@@ -1,6 +1,19 @@
 #pragma once
 
 // =========================================================
+// VERSION
+// =========================================================
+
+#define PROMETHEUS_CLP_MAJOR_VERSION @PROMETHEUS_CLP_MAJOR_VERSION@
+#define PROMETHEUS_CLP_MINOR_VERSION @PROMETHEUS_CLP_MINOR_VERSION@
+#define PROMETHEUS_CLP_PATCH_VERSION @PROMETHEUS_CLP_PATCH_VERSION@
+#define PROMETHEUS_CLP_VERSION "@PROMETHEUS_CLP_VERSION@"
+
+#define PROMETHEUS_CLP_VERSION_STRING \
+    "@PROJECT_NAME@ v" PROMETHEUS_CLP_VERSION \
+    " (" PROMETHEUS_CLP_GIT_COMMIT_INFO_SHORT ")"
+
+// =========================================================
 // GIT INFO
 // =========================================================
 
