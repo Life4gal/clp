@@ -24,3 +24,14 @@ target_link_libraries(
 	PRIVATE 
 	PrometheusCLP
 )
+
+add_test(
+		NAME ${PROJECT_NAME}-optional
+		COMMAND ${PROJECT_NAME}-optional
+		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
+add_test(
+		NAME ${PROJECT_NAME}-expected
+		COMMAND ${PROJECT_NAME}-expected
+		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
