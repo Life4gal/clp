@@ -2,7 +2,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/find_cpm.cmake)
 
 CPMAddPackage(
 		NAME PrometheusCore
-		GIT_TAG v1.0.3
+		GIT_TAG v1.0.4
 		GITHUB_REPOSITORY "Life4gal/core"
 		OPTIONS 
 		"PROMETHEUS_CORE_TEST OFF"
