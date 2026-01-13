@@ -194,8 +194,8 @@ namespace prometheus::clp
 			}
 			else
 			{
-				auto value = regex::parser::parse<T>(current_value_);
-				if (value.has_value())
+				if (auto value = regex::parser::parse<T>(current_value_);
+					value.has_value())
 				{
 					return *std::move(value);
 				}
@@ -233,7 +233,7 @@ namespace prometheus::clp
 					);
 				}
 
-				return value;
+				return std::nullopt;
 			}
 		}
 	};
