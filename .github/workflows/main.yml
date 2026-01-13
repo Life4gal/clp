@@ -1,0 +1,52 @@
+name: Main CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  CTEST_OUTPUT_ON_FAILURE: 1
+  CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
+
+jobs:
+  windows:
+    strategy:
+      fail-fast: false
+      matrix:
+        toolset: [ CLANG, MSVC ]
+        build_type: [ Debug, RelWithDebInfo ]
+    runs-on: windows-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Enable Developer Command Prompt
+        uses: ilammy/msvc-dev-cmd@v1.13.0
+
+      - uses: actions/cache@v5
+        with:
+          path: "**/cpm_modules"
+          key: cpm-${{ github.workflow }}-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
+
+      - name: Create Build Environment
+        run: cmake -E make_directory out/build/win-x64-${{matrix.build_type}}-${{matrix.toolset}}/
+
+      - name: Configure
+        shell: bash
+        working-directory: out/build/win-x64-${{matrix.build_type}}-${{matrix.toolset}}/
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+
+      - name: Build
+        shell: bash
+        working-directory: out/build/win-x64-${{matrix.build_type}}-${{matrix.toolset}}/
+        run: cmake --build . --config ${{matrix.build_type}}
+
+      - name: Test
+        shell: bash
+        working-directory: out/build/win-x64-${{matrix.build_type}}-${{matrix.toolset}}/
+        run: ctest -C ${{matrix.build_type}} --output-on-failure
