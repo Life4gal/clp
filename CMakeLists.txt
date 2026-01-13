@@ -8,13 +8,13 @@ set(
 )
 set(
 	PROMETHEUS_CLP_MINOR_VERSION 
-	0 
+	1
 	CACHE STRING 
 	"PROMETHEUS-CLP minor version"
 )
 set(
 	PROMETHEUS_CLP_PATCH_VERSION 
-	1 
+	0 
 	CACHE STRING 
 	"PROMETHEUS-CLP patch version"
 )

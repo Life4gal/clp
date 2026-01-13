@@ -1,13 +1,25 @@
-include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/find_cpm.cmake)
+if (TARGET PrometheusCore)
+	message(STATUS "[PROMETHEUS] Linking to existing `PrometheusCore` target")
+else ()
+	find_package(PrometheusCore QUIET)
 
-CPMAddPackage(
-		NAME PrometheusCore
-		GIT_TAG v1.0.4
-		GITHUB_REPOSITORY "Life4gal/core"
-		OPTIONS 
-		"PROMETHEUS_CORE_TEST OFF"
-		"PROMETHEUS_CORE_INSTALL ${PROMETHEUS_CLP_INSTALL}"
-)
+	if (PrometheusCore_FOUND)
+		message(STATUS "[PROMETHEUS] Found installed `PrometheusCore` via find_package")
+	else ()
+		message(STATUS "[PROMETHEUS] `PrometheusCore` not found, downloading via CPM")
+
+		include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/find_cpm.cmake)
+
+		CPMAddPackage(
+			NAME PrometheusCore
+			GIT_TAG v1.0.4
+			GITHUB_REPOSITORY "Life4gal/core"
+			OPTIONS 
+			"PROMETHEUS_CORE_TEST OFF"
+			"PROMETHEUS_CORE_INSTALL ${PROMETHEUS_CLP_INSTALL}"
+		)
+	endif (PrometheusCore_FOUND)
+endif (TARGET PrometheusCore)
 
 # ===================================================================================================
 # PLATFORM
