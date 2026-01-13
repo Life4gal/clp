@@ -100,12 +100,14 @@ auto main() noexcept -> int
 	std::println("\tencoding: {}", encoding.value()); // NOLINT(bugprone-unchecked-optional-access)
 
 	assert(!wpx.has_value());
+	std::ignore = wpx;
 	std::println("\twindows-position-x: unspecified");
 
 	assert(wpy.has_value() && wpy.value() == 200);
 	std::println("\twindows-position-y: {}", wpy.value()); // NOLINT(bugprone-unchecked-optional-access)
 
 	assert(parser["wsw"].set() == true && not wsw.has_value());
+	std::ignore = wsw;
 	std::println("\twindow-size-width: unspecified");
 
 	assert(wsh.has_value() && wsh.value() == 480);
@@ -118,6 +120,7 @@ auto main() noexcept -> int
 	std::println("\tauto-reload: {}", ar.value()); // NOLINT(bugprone-unchecked-optional-access)
 
 	assert(!af.has_value());
+	std::ignore = af;
 	std::println("\tauto-flush: unspecified");
 
 	// aliases
