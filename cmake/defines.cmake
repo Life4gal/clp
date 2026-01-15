@@ -12,7 +12,7 @@ else ()
 
 		CPMAddPackage(
 			NAME PrometheusCore
-			GIT_TAG v1.0.4
+			GIT_TAG main
 			GITHUB_REPOSITORY "Life4gal/core"
 			OPTIONS 
 			"PROMETHEUS_CORE_TEST OFF"
